@@ -1,0 +1,43 @@
+<div class="panel panel-default small" role="tablist" aria-multiselectable="true">
+    <div class="panel-heading" role="tab">
+        <a role="button" data-toggle="collapse" [attr.aria-expanded]="isExpanded('headers')?'true':'false'"
+           (click)="expandTab('headers')">
+            Headers
+
+        </a>
+        <span class="badge pull-right">{{headersCount()}}</span>
+    </div>
+    <div class="panel-collapse collapse" [class.in]="isExpanded('headers')" role="tabpanel">
+        <div class="panel-body">
+            <table class="table" *ngIf="hasHeaders()">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Value</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let header of getHeaders();let i = index">
+                    <td>{{header.name}}</td>
+                    <td>{{header.value}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="panel-heading" role="tab">
+        <a role="button" data-toggle="collapse" [attr.aria-expanded]="isExpanded('body')?'true':'false'"
+           (click)="expandTab('body')">
+            Body
+        </a>
+        <span class="label label-default pull-right">{{getContentType()}}</span>
+    </div>
+    <div class="panel-collapse collapse" [class.in]="isExpanded('body')" role="tabpanel">
+        <div class="panel-body">
+            <pre>{{getBody()}}</pre>
+        </div>
+    </div>
+
+</div>
+

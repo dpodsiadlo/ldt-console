@@ -1,0 +1,44 @@
+<main>
+    <nav class="navbar navbar-inverse navbar-fixed-top small">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="javascript:void(null)">LDT Console</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <form class="navbar-form navbar-right">
+                    <div class="form-group form-group-sm">
+                        <div class="input-group">
+                            <input *ngIf="!isConnected()" type="number" placeholder="Port" [(ngModel)]="port"
+                                   class="form-control">
+                            <div class="input-group-btn">
+                                <button *ngIf="!isConnected()" (click)="connect()" type="button"
+                                        class="btn btn-sm btn-success">Start
+                                </button>
+                                <button *ngIf="isConnected()" (click)="disconnect()" type="button"
+                                        class="btn btn-sm btn-danger">
+                                    Stop
+                                </button>
+                                <button (click)="clearLog()" type="button" class="btn btn-sm btn-danger">
+                                    Clear
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </nav>
+
+    <div id="contents">
+        <log-package *ngFor="let msg of log" [data]="msg"></log-package>
+    </div>
+</main>

@@ -1,0 +1,56 @@
+<div class="panel panel-default small" role="tablist" aria-multiselectable="true">
+    <div class="panel-heading" role="tab">
+        <a role="button" data-toggle="collapse" [attr.aria-expanded]="isExpanded('headers')?'true':'false'"
+           (click)="expandTab('headers')">
+            Headers
+
+        </a>
+        <span class="badge pull-right">{{headersCount()}}</span>
+    </div>
+    <div class="panel-collapse collapse" [class.in]="isExpanded('headers')" role="tabpanel">
+        <div class="panel-body">
+            <table class="table" *ngIf="hasHeaders()">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Value</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let header of getHeaders();let i = index">
+                    <td>{{header.name}}</td>
+                    <td>{{header.value}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="panel-heading" role="tab">
+        <a role="button" data-toggle="collapse" [attr.aria-expanded]="isExpanded('params')?'true':'false'"
+           (click)="expandTab('params')">
+            Parameters
+        </a>
+        <span class="badge pull-right">{{paramsCount()}}</span>
+    </div>
+    <div class="panel-collapse collapse" [class.in]="isExpanded('params')" role="tabpanel">
+        <div class="panel-body">
+            <table class="table" *ngIf="hasParams()">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Value</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let param of getParams();let i = index">
+                    <td>{{param.name}}</td>
+                    <td>{{param.value}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+

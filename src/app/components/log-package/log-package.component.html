@@ -1,0 +1,44 @@
+<div class="panel panel-default">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <ul class="nav nav-tabs" role="tablist">
+                <li *ngIf="hasRequest()"><a><span
+                        class="badge">{{data.request.method}}</span>
+                    <strong>{{data.request.url}}</strong></a></li>
+                <li *ngIf="!hasRequest()"><a><span class="badge">{{data.php.sapi}}</span>
+                </a>
+                </li>
+                <li role="presentation" class="pull-right" [class.active]="isCurrentTab('entries')"><a
+                        href="javascript:void(null)" (click)="setCurrentTab('entries')" role="tab"
+                        data-toggle="tab">Entries <span
+                        class="badge">{{data.entries.length}}</span></a></li>
+
+                <li *ngIf="hasResponse()" class="pull-right" role="presentation"
+                    [class.active]="isCurrentTab('response')"><a
+                        href="javascript:void(null)" (click)="setCurrentTab('response')" role="tab" data-toggle="tab">Response <span class="badge">{{data.response.status}}</span></a>
+
+                </li>
+
+                <li *ngIf="hasRequest()" class="pull-right" role="presentation"
+                    [class.active]="isCurrentTab('request')"><a
+                        href="javascript:void(null)" (click)="setCurrentTab('request')" role="tab"
+                        data-toggle="tab">Request</a></li>
+
+
+            </ul>
+        </div>
+        <div class="tab-content">
+            <div *ngIf="hasRequest()" role="tabpanel" class="tab-pane" [class.active]="isCurrentTab('request')">
+                <log-request [data]="data.request"></log-request>
+            </div>
+            <div *ngIf="hasResponse()" role="tabpanel" class="tab-pane" [class.active]="isCurrentTab('response')">
+                <log-response [data]="data.response"></log-response>
+            </div>
+            <div role="tabpanel" class="tab-pane" [class.active]="isCurrentTab('entries')">
+                <div *ngFor="let entry of data.entries" class="alert {{alertType(entry)}} no-margin no-border"
+                     role="alert">{{entry.message}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
