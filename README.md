@@ -13,4 +13,4 @@ The MIT License (MIT). Please see [License File](https://github.com/dpodsiadlo/l
 
 ### Credits
 
-    * [Freepik](http://www.flaticon.com/authors/freepik) - Main icon for the app 
+* [Freepik](http://www.flaticon.com/authors/freepik) - Main icon for the app 
