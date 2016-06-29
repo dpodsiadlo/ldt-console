@@ -27,3 +27,10 @@ export interface LogEntry {
     trace:any[];
     type:string;
 }
+
+
+export interface Query {
+    sql:string;
+    bindings:any[];
+    time:number;
+}

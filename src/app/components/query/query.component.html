@@ -1,0 +1,23 @@
+<div class="panel panel-default small">
+    <div class="panel-heading">
+
+    </div>
+    <div class="panel-body">
+        <pre>{{data.sql}}</pre>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Binding ID</th>
+                <th>Value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let binding of data.bindings;let i = index">
+                <td>{{i}}</td>
+                <td>{{binding}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

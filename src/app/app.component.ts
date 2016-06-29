@@ -26,7 +26,6 @@ export class AppComponent {
         this.logChannel.onMessage.addListener((msg:any) => {
             if (msg.command == 'PrintLog')
                 this.ng.run(()=> {
-                    console.log(msg.data);
                     this.log.unshift(msg.data);
                 });
         });

@@ -74,13 +74,6 @@ function onAccept(info) {
     if (info.socketId != serverSocketId)
         return;
 
-    // A new TCP connection has been established.
-    // chrome.sockets.tcp.send(info.clientSocketId, data,
-    //     function (resultCode) {
-    //         console.log("Data sent to new TCP client connection.")
-    //     });
-    // Start receiving data.
-
     buffor[info.clientSocketId] = "";
     chrome.sockets.tcp.setPaused(info.clientSocketId, false);
 }

@@ -2,13 +2,14 @@ import {Component, Input} from '@angular/core';
 import {LogPackage, LogEntry} from "../../services/data";
 import {LogRequestComponent} from "../log-request/log-request.component";
 import {LogResponseComponent} from "../log-response/log-response.component";
+import {QueryComponent} from "../query/query.component";
 
 
 @Component({
     selector: 'log-package',
     template: require('./log-package.component.html'),
     styles: [require('./log-package.component.css')],
-    directives: [LogRequestComponent, LogResponseComponent]
+    directives: [LogRequestComponent, LogResponseComponent,QueryComponent]
 })
 export class LogPackageComponent {
 
