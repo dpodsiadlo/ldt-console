@@ -44,7 +44,7 @@
                 </thead>
                 <tbody>
                 <tr *ngFor="let param of getParams();let i = index">
-                    <td>{{param.name}}</td>
+                    <td><span class="indent" [style.width.em]="param.indent"></span>{{param.name}}</td>
                     <td>{{param.value}}</td>
                 </tr>
                 </tbody>

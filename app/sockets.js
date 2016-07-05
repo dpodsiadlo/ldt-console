@@ -97,6 +97,7 @@ chrome.sockets.tcp.onReceiveError.addListener(function (info) {
 
 
     if (typeof buffor[info.socketId] != "undefined") {
+        
         if (logPort){
             logPort.postMessage({
                 command: "PrintLog",

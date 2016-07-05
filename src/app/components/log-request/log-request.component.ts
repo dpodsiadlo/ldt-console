@@ -5,7 +5,7 @@ import {LogRequest} from "../../services/data";
 @Component({
     selector: 'log-request',
     template: require('./log-request.component.html'),
-    styles: []
+    styles: [require('./log-request.component.css')]
 })
 export class LogRequestComponent {
 
@@ -43,17 +43,36 @@ export class LogRequestComponent {
     }
 
 
+    private listParams(res:any[], data:any, indent:number):void {
+
+
+        for (let p in data) {
+            if ((data[p] instanceof Object) || (data[p] instanceof Array)) {
+                res.push({
+                    name: p,
+                    indent: indent,
+                    value: Object.prototype.toString.call(data[p])
+                });
+
+                this.listParams(res, data[p], indent + 1);
+            }
+
+            else
+                res.push({
+                    name: p,
+                    indent: indent,
+                    value: data[p]
+                });
+        }
+
+    }
+
+
     public getParams():any[] {
 
         let res:any[] = [];
 
-        for (let p in this.data.parameters) {
-            res.push({
-                name: p,
-                value: this.data.parameters[p]
-            });
-        }
-
+        this.listParams(res, this.data.parameters, 0);
 
         return res;
     }
