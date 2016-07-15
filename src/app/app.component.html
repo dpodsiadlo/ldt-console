@@ -1,44 +1,88 @@
-<main>
-    <nav class="navbar navbar-inverse navbar-fixed-top small">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                        aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="javascript:void(null)">LDT Console</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-                <form class="navbar-form navbar-right">
-                    <div class="form-group form-group-sm">
-                        <div class="input-group">
-                            <input *ngIf="!isConnected()" type="number" placeholder="Port" [(ngModel)]="port"
-                                   class="form-control">
-                            <div class="input-group-btn">
-                                <button *ngIf="!isConnected()" (click)="connect()" type="button"
-                                        class="btn btn-sm btn-success">Start
-                                </button>
-                                <button *ngIf="isConnected()" (click)="disconnect()" type="button"
-                                        class="btn btn-sm btn-danger">
-                                    Stop
-                                </button>
-                                <button (click)="clearLog()" type="button" class="btn btn-sm btn-danger">
-                                    Clear
-                                </button>
-                            </div>
+<nav class="navbar navbar-inverse navbar-fixed-top small">
+    <div class="container">
+        <div class="navbar-header">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">LDT Console <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="javascript:void(null)" (click)="showSettings()">Settings</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <form class="navbar-form navbar-right">
+                <div class="form-group form-group-sm">
+                    <div class="input-group input-group-sm">
+                        <div *ngIf="!isConnected()" class="input-group-addon">
+                            <span>Port:</span>
                         </div>
-
+                        <input *ngIf="!isConnected()" type="number" placeholder="Port" [(ngModel)]="port"
+                               class="form-control">
+                        <div class="input-group-btn">
+                            <button *ngIf="!isConnected()" (click)="connect()" type="button"
+                                    class="btn btn-success">Start
+                            </button>
+                            <button *ngIf="isConnected()" (click)="disconnect()" type="button"
+                                    class="btn btn-danger">
+                                Stop
+                            </button>
+                            <button (click)="clearLog()" type="button" class="btn btn-danger">
+                                Clear
+                            </button>
+                        </div>
                     </div>
 
-                </form>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div id="contents">
+    <log-package *ngFor="let msg of log" [data]="msg" [defaultState]="defaultState"></log-package>
+</div>
+
+
+<div #settings class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="gridSystemModalLabel">Settings</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <label>Max entries</label>
+                    <input type="number" placeholder="Max entries" [(ngModel)]="maxEntries"
+                           class="form-control text-right">
+
+                </div>
+                <div class="row">
+
+                    <label>Port</label>
+                    <input type="number" placeholder="Port" [(ngModel)]="port"
+                           class="form-control text-right">
+
+                </div>
+                <div class="row">
+
+                    <label>Default state</label>
+                    <select [(ngModel)]="defaultState" class="form-control text-right">
+                        <option value="minimized">Minimized</option>
+                        <option value="request">Request</option>
+                        <option value="response">Response</option>
+                        <option value="entries">Entries</option>
+                        <option value="queries">Queries</option>
+                    </select>
+
+                </div>
+
             </div>
         </div>
-    </nav>
-
-    <div id="contents">
-        <log-package *ngFor="let msg of log" [data]="msg"></log-package>
     </div>
-</main>
+</div>

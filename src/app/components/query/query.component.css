@@ -1,0 +1,11 @@
+pre{
+    cursor: text;
+    -webkit-user-select: text;
+}
+
+
+
+.selectable {
+    cursor: text;
+    -webkit-user-select: text;
+}

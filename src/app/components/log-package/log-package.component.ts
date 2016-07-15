@@ -9,14 +9,16 @@ import {QueryComponent} from "../query/query.component";
     selector: 'log-package',
     template: require('./log-package.component.html'),
     styles: [require('./log-package.component.css')],
-    directives: [LogRequestComponent, LogResponseComponent,QueryComponent]
+    directives: [LogRequestComponent, LogResponseComponent, QueryComponent]
 })
 export class LogPackageComponent {
 
     @Input('data')
     data:LogPackage = null;
 
-    private _currentTab:string = 'response';
+
+    @Input('defaultState')
+    _currentTab:string = '';
 
     public constructor() {
 
@@ -60,16 +62,6 @@ export class LogPackageComponent {
 
 
     ngOnInit() {
-
-        if (this.hasResponse())
-            this._currentTab = 'response';
-        else {
-            if (this.hasRequest())
-                this._currentTab = 'request';
-            else
-                this._currentTab = 'entries';
-        }
-
 
     }
 

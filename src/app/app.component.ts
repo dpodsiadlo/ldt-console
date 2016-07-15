@@ -1,4 +1,4 @@
-import {Component, NgZone} from '@angular/core';
+import {Component, NgZone, ViewChild, ElementRef} from '@angular/core';
 import {LogPackageComponent} from "./components/log-package/log-package.component";
 import {LogPackage} from "./services/data";
 
@@ -12,11 +12,15 @@ import {LogPackage} from "./services/data";
 export class AppComponent {
 
     private port:number = 1800;
+    private maxEntries:number = 10;
     private connected:boolean = false;
-
+    private defaultState:string = "minimized";
 
     private logChannel:any = null;
     private log:LogPackage[] = [];
+
+    @ViewChild('settings')
+    settings:ElementRef = null;
 
     public constructor(private ng:NgZone) {
 
@@ -27,6 +31,10 @@ export class AppComponent {
             if (msg.command == 'PrintLog')
                 this.ng.run(()=> {
                     this.log.unshift(msg.data);
+
+                    if (this.log.length > this.maxEntries) {
+                        this.log.splice(this.maxEntries);
+                    }
                 });
         });
 
@@ -59,5 +67,9 @@ export class AppComponent {
         this.log = [];
     }
 
+
+    public showSettings() {
+        jQuery(this.settings.nativeElement).modal('show');
+    }
 }
 

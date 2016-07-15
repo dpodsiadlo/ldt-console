@@ -2,3 +2,8 @@ span.indent {
     display: inline-block;
     width: 2em;
 }
+
+.selectable {
+    cursor: text;
+    -webkit-user-select: text;
+}

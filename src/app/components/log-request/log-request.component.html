@@ -18,8 +18,8 @@
                 </thead>
                 <tbody>
                 <tr *ngFor="let header of getHeaders();let i = index">
-                    <td>{{header.name}}</td>
-                    <td>{{header.value}}</td>
+                    <td class="selectable">{{header.name}}</td>
+                    <td class="selectable">{{header.value}}</td>
                 </tr>
                 </tbody>
             </table>
@@ -44,8 +44,8 @@
                 </thead>
                 <tbody>
                 <tr *ngFor="let param of getParams();let i = index">
-                    <td><span class="indent" [style.width.em]="param.indent"></span>{{param.name}}</td>
-                    <td>{{param.value}}</td>
+                    <td class="selectable"><span class="indent" [style.width.em]="param.indent"></span>{{param.name}}</td>
+                    <td class="selectable">{{param.value}}</td>
                 </tr>
                 </tbody>
             </table>
