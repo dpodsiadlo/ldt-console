@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "LDT Console",
   "description": "Console for LDT",
-  "version": "1.3",
+  "version": "1.4",
   "minimum_chrome_version": "33.0.1715.0",
   "permissions": [
     "background"

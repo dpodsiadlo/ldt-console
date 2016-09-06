@@ -16,6 +16,16 @@
             <form class="navbar-form navbar-right">
                 <div class="form-group form-group-sm">
                     <div class="input-group input-group-sm">
+                        <div class="input-group-addon">
+                            <span>Filter:</span>
+                        </div>
+                        <input type="text" [(ngModel)]="filter" (ngModelChange)="filterChanged($event)"
+                               class="form-control">
+                        <div class="input-group-btn">
+                            <span *ngIf="isFilterRE()" class="btn btn-info" title="Regular expression">RE</span>
+                        </div>
+                    </div>
+                    <div class="input-group input-group-sm">
                         <div *ngIf="!isConnected()" class="input-group-addon">
                             <span>Port:</span>
                         </div>
